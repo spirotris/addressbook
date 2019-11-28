@@ -4,7 +4,7 @@ USE `lernia_addressbook`;
 CREATE TABLE IF NOT EXISTS `address` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `person_id` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT utc_timestamp(),
+  `active` tinyint(1) NOT NULL DEFAULT 1,
   `street` varchar(100) DEFAULT NULL,
   `areacode` varchar(20) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
@@ -12,13 +12,14 @@ CREATE TABLE IF NOT EXISTS `address` (
   PRIMARY KEY (`id`),
   KEY `FK_address_person` (`person_id`),
   CONSTRAINT `FK_address_person` FOREIGN KEY (`person_id`) REFERENCES `person` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `person` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(100) NOT NULL DEFAULT 'John',
-  `last_name` varchar(100) NOT NULL DEFAULT 'Doe',
-  `phone_number` varchar(50) DEFAULT '123-123-123',
-  `email` varchar(100) NOT NULL DEFAULT 'john@doe.com',
+  `first_name` varchar(100) DEFAULT NULL,
+  `last_name` varchar(100) DEFAULT NULL,
+  `phone_number` varchar(50) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `active` tinyint(1) DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;

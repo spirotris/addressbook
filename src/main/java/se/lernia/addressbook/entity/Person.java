@@ -59,14 +59,17 @@ public class Person {
 		this.id = id;
 	}
 
-	public boolean isActive() {
+	public Boolean getActive() {
 		return active;
 	}
 
-	public void setActive(boolean active) {
+	public void setActive(Boolean active) {
+		if(active == null) {
+			active = true;
+		}
 		this.active = active;
 	}
-
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -102,7 +105,7 @@ public class Person {
 	public Address getAddress() {
 		if(!address.isEmpty()) {
 			for(Address theAddress : address) {
-				if(theAddress.isActive()) {
+				if(theAddress.getActive()) {
 					return theAddress;
 				}
 			}

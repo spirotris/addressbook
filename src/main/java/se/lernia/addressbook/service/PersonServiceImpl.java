@@ -31,7 +31,7 @@ public class PersonServiceImpl implements PersonService {
 		List<Person> activePersons = new ArrayList<>();
 		
 		for(Person thePerson : persons) {
-			if(thePerson.isActive()) {
+			if(thePerson.getActive()) {
 				activePersons.add(thePerson);
 			}
 		}
@@ -79,7 +79,7 @@ public class PersonServiceImpl implements PersonService {
 		List<Person> activePersons = new ArrayList<>();
 		
 		for(Person thePerson : persons) {
-			if(!thePerson.isActive()) {
+			if(!thePerson.getActive()) {
 				activePersons.add(thePerson);
 			}
 		}

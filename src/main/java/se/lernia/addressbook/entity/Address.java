@@ -20,7 +20,7 @@ public class Address {
 	private int id;
 
 	@Column(name = "active")
-	private boolean active;
+	private Boolean active;
 
 	@Column(name = "street")
 	private String street;
@@ -56,11 +56,14 @@ public class Address {
 		this.id = id;
 	}
 
-	public boolean isActive() {
+	public Boolean getActive() {
 		return active;
 	}
 
-	public void setActive(boolean active) {
+	public void setActive(Boolean active) {
+		if(active == null) {
+			active = true;
+		}
 		this.active = active;
 	}
 

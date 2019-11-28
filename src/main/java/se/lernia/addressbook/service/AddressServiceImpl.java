@@ -78,7 +78,7 @@ public class AddressServiceImpl implements AddressService {
 		
 		List<Address> inactiveAddresses = new ArrayList<>();
 		for(Address tempAddr : theList) {
-			if(!tempAddr.isActive()) {
+			if(!tempAddr.getActive()) {
 				inactiveAddresses.add(tempAddr);
 			}
 		}
