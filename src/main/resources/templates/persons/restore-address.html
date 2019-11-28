@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Addressbook</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+</head>
+<body>
+
+	<div class="container">
+
+		<h3>Addressbook</h3>
+		<hr>
+
+		<table class="table table-bordered table-striped">
+
+			<thead class="thead-dark">
+				<tr>
+					<th>Street</th>
+					<th>Area Code</th>
+					<th>City</th>
+					<th>Country</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="tempAddress : ${addressess}">
+					<td th:text="${tempAddress.street}" />
+					<td th:text="${tempAddress.areacode}" />
+					<td th:text="${tempAddress.city}" />
+					<td th:text="${tempAddress.country}" />
+					
+					<td>
+					<a th:href="@{/address/restoreAddress(addressId=${tempAddress.id})}" class="btn btn-info btn-sm mb-2">Restore Address</a>
+					</td>
+				</tr>
+			</tbody>
+
+		</table>
+		
+		<hr>
+		<a th:href="@{/persons/list}" class="badge badge-info">Back to Addressbook</a>
+
+	</div>
+</body>
+</html>

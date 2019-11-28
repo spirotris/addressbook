@@ -2,6 +2,7 @@ package se.lernia.addressbook.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,22 +18,19 @@ import se.lernia.addressbook.service.PersonService;
 @RequestMapping("/persons")
 public class PersonController {
 
+	@Autowired
 	private PersonService personService;
-
-	public PersonController(PersonService thePersonService) {
-		personService = thePersonService;
-	}
 
 	@GetMapping("/list")
 	public String listPersons(Model theModel) {
-		
-		List<Person> thePersons = personService.findAll();
+
+		List<Person> thePersons = personService.findAllActive();
 
 		theModel.addAttribute("persons", thePersons);
 
 		return "persons/list-persons";
 	}
-
+	
 	@GetMapping("/showFormForAdd")
 	public String showFormForAdd(Model theModel) {
 
@@ -52,7 +50,7 @@ public class PersonController {
 
 		return "persons/person-form";
 	}
-
+	
 	@PostMapping("/save")
 	public String savePerson(@ModelAttribute("person") Person thePerson) {
 		personService.save(thePerson);
@@ -66,4 +64,22 @@ public class PersonController {
 
 		return "redirect:/persons/list";
 	}
+	
+	@GetMapping("/showFormForRestore")
+	public String showFormForRestorePerson(Model theModel) {
+		List<Person> thePersons = personService.findAllInactive();
+
+		theModel.addAttribute("persons", thePersons);
+		
+		return "persons/restore-form";
+	}
+	
+	@GetMapping("/restore")
+	public String showFormForRestorePerson(@RequestParam("personId") int theId) {
+		
+		personService.restorePerson(theId);
+		
+		return "redirect:/persons/list";
+	}
+	
 }

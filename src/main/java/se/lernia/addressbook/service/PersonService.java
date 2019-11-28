@@ -14,4 +14,10 @@ public interface PersonService {
 
 	public void deleteById(int theId);
 
+	public List<Person> findAllActive();
+	
+	public List<Person> findAllInactive();
+
+	public void restorePerson(int theId);
+
 }

@@ -1,7 +1,5 @@
 package se.lernia.addressbook.entity;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,8 +19,8 @@ public class Address {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "timestamp")
-	private java.util.Date timestamp;
+	@Column(name = "active")
+	private boolean active;
 
 	@Column(name = "street")
 	private String street;
@@ -30,12 +28,12 @@ public class Address {
 	@Column(name = "areacode")
 	private String areacode;
 
-	@Column(name = "county")
-	private String county;
+	@Column(name = "city")
+	private String city;
 
 	@Column(name = "country")
 	private String country;
-
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "personId", referencedColumnName = "id")
 	private Person person;
@@ -43,13 +41,11 @@ public class Address {
 	public Address() {
 	}
 
-	public Address(Date timestamp, String street, String areacode, String county, String country, Person person) {
-		this.timestamp = timestamp;
+	public Address(String street, String areacode, String city, String country) {
 		this.street = street;
 		this.areacode = areacode;
-		this.county = county;
+		this.city = city;
 		this.country = country;
-		this.person = person;
 	}
 
 	public int getId() {
@@ -60,12 +56,12 @@ public class Address {
 		this.id = id;
 	}
 
-	public java.util.Date getTimestamp() {
-		return timestamp;
+	public boolean isActive() {
+		return active;
 	}
 
-	public void setTimestamp(java.util.Date timestamp) {
-		this.timestamp = timestamp;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public String getStreet() {
@@ -84,12 +80,12 @@ public class Address {
 		this.areacode = areacode;
 	}
 
-	public String getCounty() {
-		return county;
+	public String getCity() {
+		return city;
 	}
 
-	public void setCounty(String county) {
-		this.county = county;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public String getCountry() {
@@ -110,7 +106,7 @@ public class Address {
 
 	@Override
 	public String toString() {
-		return street + ", " + areacode + " " + county + ", " + country;
+		return street + ", " + areacode + " " + city + ", " + country;
 	}
 
 }

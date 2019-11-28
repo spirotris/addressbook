@@ -1,7 +1,7 @@
 package se.lernia.addressbook.entity;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,6 +22,9 @@ public class Person {
 	@Column(name="id")
 	private int id;
 	
+	@Column(name="active", columnDefinition="BOOLEAN DEFAULT true")
+	private Boolean active;
+	
 	@Column(name="first_name")
 	private String firstName;
 	
@@ -41,12 +44,11 @@ public class Person {
 		
 	}
 
-	public Person(String firstName, String lastName, String phoneNumber, String email, List<Address> address) {
+	public Person(String firstName, String lastName, String phoneNumber, String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
-		this.address = address;
 	}
 
 	public int getId() {
@@ -55,6 +57,14 @@ public class Person {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public String getFirstName() {
@@ -89,17 +99,52 @@ public class Person {
 		this.email = email;
 	}
 	
-	public String getAddress() {
+	public Address getAddress() {
 		if(!address.isEmpty()) {
-			return address.get(0).toString();
+			for(Address theAddress : address) {
+				if(theAddress.isActive()) {
+					return theAddress;
+				}
+			}
 		}
-		return "No address registered";
+		return null;
+	}
+	
+	public List<Address> getAddresses() {
+		if(!address.isEmpty()) {
+			return address;
+		}
+		return null;
 	}
 
-	public void setAddress(List<Address> address) {
-		this.address = address;
+	public void setAddress(Address theAddress) {
+		if(!this.address.isEmpty()) {
+			for(Address tempAddress : this.address) {
+				if(tempAddress.getId() == theAddress.getId()) {
+					tempAddress = theAddress;
+				}
+			}
+		}
+		
 	}
-
+	
+	public void addAddress(Address theAddress) {
+		if(address == null) {
+			address = new ArrayList<>();
+		}
+		
+		address.add(theAddress);
+		
+		theAddress.setPerson(this);
+	}
+	
+	public void deleteAddress(Address theAddress) {
+		if(theAddress == null) {
+			return;
+		}
+		theAddress.setActive(false);
+	}
+	
 	@Override
 	public String toString() {
 		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber="

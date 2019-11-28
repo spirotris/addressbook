@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Addressbook</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+</head>
+<body>
+
+	<div class="container">
+
+		<h3>Addressbook</h3>
+		<hr>
+
+		<p class="h4 mb-4">Save Address</p>
+
+		<form action="#" th:action="@{/address/save}"
+			th:object="${address}" method="POST">
+			
+			<a th:href="@{/address/delete(addressId=*{id})}" class="btn btn-danger btn-sm mb-2">Delete Address</a>
+			<a th:href="@{/address/restore(personId=*{person.id})}" class="btn btn-danger btn-sm mb-2">Restore Old Address</a>
+			<br><br>
+			
+			<input type="hidden" th:field="*{id}" />
+			<input type="hidden" th:field="*{active}" />
+			<input type="hidden" th:field="*{person}" />
+			
+			<input type="text" th:field="*{street}" class="form-control mb-4 col-4" placeholder="Street">
+			<input type="text" th:field="*{areacode}" class="form-control mb-4 col-4" placeholder="Area Code">
+			<input type="text" th:field="*{city}" class="form-control mb-4 col-4" placeholder="City">
+			<input type="text" th:field="*{country}" class="form-control mb-4 col-4" placeholder="Country">
+
+			<button type="submit" class="btn btn-info col-2">Save</button>
+			
+		</form>
+		
+		<hr>
+		<a th:href="@{/persons/list}" class="badge badge-info">Back to Addressbook</a>
+	</div>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 package se.lernia.addressbook.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,20 @@ public class PersonServiceImpl implements PersonService {
 	@Override
 	public List<Person> findAll() {
 		return personRepository.findAllByOrderByLastNameAsc();
+	}
+	
+	@Override
+	public List<Person> findAllActive() {
+		List<Person> persons = findAll();
+		List<Person> activePersons = new ArrayList<>();
+		
+		for(Person thePerson : persons) {
+			if(thePerson.isActive()) {
+				activePersons.add(thePerson);
+			}
+		}
+		
+		return activePersons;
 	}
 
 	@Override
@@ -46,7 +61,39 @@ public class PersonServiceImpl implements PersonService {
 
 	@Override
 	public void deleteById(int theId) {
-		personRepository.deleteById(theId);
+		Optional<Person> result = personRepository.findById(theId);
+
+		Person thePerson = null;
+
+		if (result.isPresent()) {
+			thePerson = result.get();
+			thePerson.setActive(false);
+			personRepository.save(thePerson);
+		}
+		
+	}
+
+	@Override
+	public List<Person> findAllInactive() {
+		List<Person> persons = findAll();
+		List<Person> activePersons = new ArrayList<>();
+		
+		for(Person thePerson : persons) {
+			if(!thePerson.isActive()) {
+				activePersons.add(thePerson);
+			}
+		}
+		
+		return activePersons;
+	}
+
+	@Override
+	public void restorePerson(int theId) {
+		Person thePerson = findById(theId);
+		
+		thePerson.setActive(true);
+		
+		personRepository.save(thePerson);
 	}
 
 }

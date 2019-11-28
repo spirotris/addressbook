@@ -19,9 +19,6 @@
 		<h3>Addressbook</h3>
 		<hr>
 
-		<a th:href="@{showFormForAdd}" class="btn btn-primary btn-sm mb-3"> Add Person </a>
-		<a th:href="@{showFormForRestore}" class="btn btn-primary btn-sm mb-3"> Restore Person </a>
-
 		<table class="table table-bordered table-striped">
 
 			<thead class="thead-dark">
@@ -42,16 +39,17 @@
 					<td th:text="${tempPerson.phoneNumber}" />
 					<td th:text="${tempPerson.email}" />
 					<td th:text="${tempPerson.address}" />
-					
-					<td>
-					<a th:href="@{/persons/showFormForUpdate(personId=${tempPerson.id})}" class="btn btn-info btn-sm mb-2">Edit Details</a>
-					<a th:href="@{/address/showFormForUpdate(personId=${tempPerson.id})}" class="btn btn-info btn-sm mb-2">Edit Address</a>
-					<a th:href="@{/persons/delete(personId=${tempPerson.id})}" class="btn btn-danger btn-sm mb-2">Delete Person</a>
-					</td>
+
+					<td><a
+						th:href="@{/persons/restore(personId=${tempPerson.id})}"
+						class="btn btn-danger btn-sm mb-2">Restore Person</a></td>
 				</tr>
 			</tbody>
 
 		</table>
+
+		<hr>
+		<a th:href="@{/persons/list}" class="badge badge-info">Back to Addressbook</a>
 
 	</div>
 </body>
