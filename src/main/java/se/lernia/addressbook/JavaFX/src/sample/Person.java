@@ -1,0 +1,99 @@
+package sample;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
+
+import java.time.LocalDate;
+
+
+public class Person {
+
+    LocalDate timestamp;
+    SimpleIntegerProperty id;
+    SimpleStringProperty firstName;
+    SimpleStringProperty lastName;
+    SimpleStringProperty mail;
+    SimpleStringProperty telephone;
+    SimpleStringProperty address;
+    SimpleStringProperty county;
+    public Person(Integer id, String firstname, String lastname, String mail, String telephonenumber, String address, String county){
+        this.id = new SimpleIntegerProperty(id);
+        this.firstName = new SimpleStringProperty(firstname);
+        this.lastName = new SimpleStringProperty(lastname);
+        this.mail = new SimpleStringProperty(mail);
+        this.telephone = new SimpleStringProperty(telephonenumber);
+        this.address = new SimpleStringProperty(address);
+        this.county = new SimpleStringProperty(county);
+        this.timestamp = LocalDate.now();
+
+
+    }
+    public int getId() {
+        return id.getValue();
+    }
+
+    public void setId(int id) {
+        this.id = new SimpleIntegerProperty(id);
+    }
+
+    public LocalDate getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDate timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public SimpleIntegerProperty idProperty() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName.get();
+    }
+
+
+    public void setFirstName(String firstname) {
+        this.firstName.set(firstname);
+    }
+
+    public String getLastName() {
+        return lastName.get();
+    }
+
+    public void setLastName(String lastname) {
+        this.lastName.set(lastname);
+    }
+
+    public String getMail() {
+        return mail.get();
+    }
+
+    public void setMail(String mail) {
+        this.mail.set(mail);
+    }
+
+    public String getTelephone() {
+        return telephone.get();
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone.set(telephone);
+    }
+
+    public String getAddress() {
+        return address.get();
+    }
+
+    public void setAddress(String address) {
+        this.address.set(address);
+    }
+
+    public String getCounty() {
+        return county.get();
+    }
+
+    public void setCounty(String county) {
+        this.county.set(county);
+    }
+}
