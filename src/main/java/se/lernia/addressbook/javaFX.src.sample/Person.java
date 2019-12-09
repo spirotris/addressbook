@@ -1,4 +1,4 @@
-package sample;
+package main.java.se.lernia.addressbook.javaFX.src.sample;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;

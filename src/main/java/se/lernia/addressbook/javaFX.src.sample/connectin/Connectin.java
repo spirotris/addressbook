@@ -1,4 +1,4 @@
-package sample.connectin;
+package main.java.se.lernia.addressbook.javaFX.src.sample.connectin;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
