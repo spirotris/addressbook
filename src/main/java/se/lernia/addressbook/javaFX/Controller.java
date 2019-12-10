@@ -1,16 +1,21 @@
-package main.java.se.lernia.addressbook.javaFX;
+package se.lernia.addressbook.javaFX;
 
-import sample.connectin.Connectin;
+import se.lernia.addressbook.javaFX.connectin.Connectin;
 
 public abstract class Controller {
     protected Connectin contin;
     protected Main app; //Not a fan of this, but required for choosing window view
 
-    public void setConnectin(Connectin contin){
+    public void setConnectin(Connectin contin) {
         this.contin = contin;
     }
-    public void setApp(Main app){
+
+    public void setApp(Main app) {
         this.app = app;
+    }
+
+    public Main getApp() {
+        return app;
     }
 
 }

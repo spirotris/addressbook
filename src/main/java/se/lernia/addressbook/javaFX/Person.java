@@ -1,22 +1,23 @@
-package main.java.se.lernia.addressbook.javaFX;
+package se.lernia.addressbook.javaFX;
+
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
 
 
 public class Person {
 
-    LocalDate timestamp;
-    SimpleIntegerProperty id;
-    SimpleStringProperty firstName;
-    SimpleStringProperty lastName;
-    SimpleStringProperty mail;
-    SimpleStringProperty telephone;
-    SimpleStringProperty address;
-    SimpleStringProperty county;
-    public Person(Integer id, String firstname, String lastname, String mail, String telephonenumber, String address, String county){
+    public LocalDate timestamp;
+    public SimpleIntegerProperty id;
+    public SimpleStringProperty firstName;
+    public SimpleStringProperty lastName;
+    public SimpleStringProperty mail;
+    public SimpleStringProperty telephone;
+    public SimpleStringProperty address;
+    public SimpleStringProperty county;
+
+    public Person(Integer id, String firstname, String lastname, String mail, String telephonenumber, String address, String county) {
         this.id = new SimpleIntegerProperty(id);
         this.firstName = new SimpleStringProperty(firstname);
         this.lastName = new SimpleStringProperty(lastname);
@@ -28,6 +29,7 @@ public class Person {
 
 
     }
+
     public int getId() {
         return id.getValue();
     }

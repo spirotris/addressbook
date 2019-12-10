@@ -1,4 +1,4 @@
-package main.java.se.lernia.addressbook.javaFX;
+package se.lernia.addressbook.javaFX;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,25 +18,43 @@ import java.util.ResourceBundle;
 
 public class TableViewController extends Controller implements Initializable {
     //TableView and Columns
-    @FXML private TableView<Person> tableview;
-    @FXML private TableColumn<Person, Integer> idColumn;
-    @FXML private TableColumn<Person, String> firstnameColumn;
-    @FXML private TableColumn<Person, String> lastnameColumn;
-    @FXML private TableColumn<Person, String> mailColumn;
-    @FXML private TableColumn<Person, String> telephonenumberColumn;
-    @FXML private TableColumn<Person, String> addressColumn;
-    @FXML private TableColumn<Person, String> countyColumn;
-    @FXML private TableColumn<Person, LocalDate> timestampColumn;
-    @FXML public ObservableList<Person> personList;
+    @FXML
+    private TableView<Person> tableview;
+    @FXML
+    private TableColumn<Person, Integer> idColumn;
+    @FXML
+    private TableColumn<Person, String> firstnameColumn;
+    @FXML
+    private TableColumn<Person, String> lastnameColumn;
+    @FXML
+    private TableColumn<Person, String> mailColumn;
+    @FXML
+    private TableColumn<Person, String> telephonenumberColumn;
+    @FXML
+    private TableColumn<Person, String> addressColumn;
+    @FXML
+    private TableColumn<Person, String> countyColumn;
+    @FXML
+    private TableColumn<Person, LocalDate> timestampColumn;
+    @FXML
+    public ObservableList<Person> personList;
     //Buttons and Textfields for adding a person
-    @FXML public TextField firstnameTextField;
-    @FXML public TextField lastnameTextField;
-    @FXML public TextField mailTextField;
-    @FXML public TextField telephonenumberTextField;
-    @FXML public TextField addressTextField;
-    @FXML public TextField countyTextField;
-    @FXML public Button addPersonButton;
-    @FXML public Button clearTextFieldsButton;
+    @FXML
+    public TextField firstnameTextField;
+    @FXML
+    public TextField lastnameTextField;
+    @FXML
+    public TextField mailTextField;
+    @FXML
+    public TextField telephonenumberTextField;
+    @FXML
+    public TextField addressTextField;
+    @FXML
+    public TextField countyTextField;
+    @FXML
+    public Button addPersonButton;
+    @FXML
+    public Button clearTextFieldsButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -51,13 +69,16 @@ public class TableViewController extends Controller implements Initializable {
         configureAllButtons();
         tableview.setItems(getPeople());
     }
-    @FXML public ObservableList<Person> getPeople(){
+
+    @FXML
+    public ObservableList<Person> getPeople() {
         //Add some elements to try, but make another method for adding stuff
-            personList = FXCollections.observableArrayList();
-            personList.add(new Person(1,"Philip","Ferguson","philipe.fergus@gmail.com","070xxxxxxxxx", "Granngatan 56", "Lappland"));
+        personList = FXCollections.observableArrayList();
+        personList.add(new Person(1, "Philip", "Ferguson", "philipe.fergus@gmail.com", "070xxxxxxxxx", "Granngatan 56", "Lappland"));
         return personList;
     }
-    public void configureAllButtons(){
+
+    public void configureAllButtons() {
         //ClearTextField Button
         clearTextFieldsButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
