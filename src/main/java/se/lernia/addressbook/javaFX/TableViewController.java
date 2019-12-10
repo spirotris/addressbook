@@ -1,4 +1,4 @@
-package main.java.se.lernia.addressbook.javaFX.src.sample;
+package main.java.se.lernia.addressbook.javaFX;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
