@@ -4,11 +4,13 @@ package se.lernia.addressbook.commandMethod;
 	import java.sql.Connection;
 	import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import se.lernia.addressbook.entity.*;
+	import se.lernia.addressbook.entity.*;
 
 	public class DBcommandMethods {
 	
@@ -109,6 +111,7 @@ import se.lernia.addressbook.entity.*;
 			return null;
 			
 		}
+		
 		public static  ArrayList <Address> readAddressTable (String select) {
 			
 			try {
@@ -124,18 +127,14 @@ import se.lernia.addressbook.entity.*;
 				
 				while(result.next()) {
 					
-					
-					info2.add(information2);
-					
-					information2 = new Address (result.getString("street"),result.getString("areadcode"),result.getString("city"),result.getString("country"));
+				
+					information2 = new Address (result.getString("street"),result.getString("areacode"),result.getString("city"),result.getString("country"));
 					info2.add(information2);
 					
 				}
 				con.close();
 				
 				return info2;
-				
-				
 				
 			} catch (SQLException e) {
 				// TODO: handle exception
@@ -146,23 +145,41 @@ import se.lernia.addressbook.entity.*;
 }
 		
 		public static void writeToConsole () {
+			String Enter;
+			Scanner sc = new Scanner (System.in);
+			System.out.println("Enter Person to see Person Table or Enter Address to See Address Table: ");
+			Enter = sc.nextLine();
 			
-			try {
-		//	ArrayList<Person> info = readPersonTable("select * from Person") ;
-			
-			ArrayList<Address> info2 =readAddressTable("select * from Address") ;
-			
-		//	for (Person i: info) {
+			if (Enter.equalsIgnoreCase("Person")) {
 				
-		//		System.out.println(i.getId()+ "\t"+i.getFirstName()+ "\t" + i.getLastName() +"\t" + i.getPhoneNumber()+  "\t"+ i.getEmail());
-		//}
-			for (Address j: info2) {
+				try {
+					
+					ArrayList<Person> info = readPersonTable("select * from Person") ;
+					for (Person i: info) {
+						
+						System.out.println(i.getId()+ "\t"+i.getFirstName()+ "\t" + i.getLastName() +"\t" + i.getPhoneNumber()+  "\t"+ i.getEmail());
+				}
+					
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.err.println(e.getMessage());
+				} 
 				
-				System.out.println(j.getId() + "\t" +j.getStreet()+ "\t" + j.getAreacode()+ "\t" + j.getCity()+ "\t" + j.getCountry());
+			} else if (Enter.equalsIgnoreCase("Address")) {
+				try {
+					ArrayList<Address> info2 =readAddressTable("select * from Address") ;
+					
+					for (Address j:info2) {
+						
+						System.out.println(j.getId() + "\t" +j.getStreet()+ "\t" + j.getAreacode()+ "\t" + j.getCity()+ "\t" + j.getCountry());
+					}
+				} catch (Exception e) {
+					System.err.println(e.getMessage());
+				}
+			} else {
+				System.out.println();
 			}
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
+			
 }
 		
 	}
