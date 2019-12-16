@@ -5,14 +5,27 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import se.lernia.addressbook.entity.Person;
+import se.lernia.addressbook.entity.dao.PersonRepository;
 import se.lernia.addressbook.javaFX.connectin.Connectin;
+import se.lernia.addressbook.service.PersonService;
+import se.lernia.addressbook.service.PersonServiceImpl;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 
 public class Main extends Application {
     Stage primaryStage;
     Parent root;
-    Connectin contin = Connectin.getInstance();
+    //PersonService pService = Connectin.getInstance();
+    //PersonService pService = new PersonServiceImpl().; //Fix with personrepos
+
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -27,7 +40,7 @@ public class Main extends Application {
 
         this.root = loader.load(); //must load first otherwise code below will return as null
         Controller controller = loader.getController();
-        controller.setConnectin(contin);
+        controller.setPersonService(pService);
         controller.setApp(this);
         this.primaryStage.setScene(new Scene(this.root, 1000, 800));
         this.primaryStage.show();
@@ -38,7 +51,7 @@ public class Main extends Application {
         loader.setLocation(getClass().getResource("/LoginView.fxml"));
         this.root = loader.load(); //must load first otherwise code below will return as null
         Controller controller = loader.getController();
-        controller.setConnectin(contin);
+        controller.setPersonService(pService);
         controller.setApp(this);
         this.primaryStage.setScene(new Scene(this.root, 1000, 800));
         this.primaryStage.show();
