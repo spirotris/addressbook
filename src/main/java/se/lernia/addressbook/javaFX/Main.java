@@ -22,8 +22,8 @@ import java.util.Optional;
 public class Main extends Application {
     Stage primaryStage;
     Parent root;
-    //PersonService pService = Connectin.getInstance();
-    //PersonService pService = new PersonServiceImpl().; //Fix with personrepos
+    PersonService pService = Connectin.getInstance();
+    //PersonService pService = new PersonServiceImpl().; //Spring Variation
 
 
 
@@ -31,13 +31,13 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Addressbook");
-        chooseLoginView();
+        //chooseLoginView();
+        chooseTableView();
     }
 
     public void chooseTableView() throws IOException { //swap over to TableView
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/TableView.fxml")); //Cannot make static because of this :(  // fxml. needs / to find in maven
-
         this.root = loader.load(); //must load first otherwise code below will return as null
         Controller controller = loader.getController();
         controller.setPersonService(pService);

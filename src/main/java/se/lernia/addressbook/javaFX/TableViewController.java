@@ -33,11 +33,11 @@ public class TableViewController extends Controller implements Initializable {
     @FXML
     private TableColumn<Person, String> addressColumn;
     @FXML
-    private TableColumn<Person, String> countyColumn;
+    private TableColumn<Person, String> countryColumn;
     @FXML
     private TableColumn<Person, LocalDate> timestampColumn;
     @FXML
-    public ObservableList<Person> personList;
+    public ObservableList<Person> personList = FXCollections.observableArrayList();
     //Buttons and Textfields for adding a person
     @FXML
     public TextField firstnameTextField;
@@ -50,7 +50,7 @@ public class TableViewController extends Controller implements Initializable {
     @FXML
     public TextField addressTextField;
     @FXML
-    public TextField countyTextField;
+    public TextField countryTextField;
     @FXML
     public Button addPersonButton;
     @FXML
@@ -64,7 +64,7 @@ public class TableViewController extends Controller implements Initializable {
         mailColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("Mail"));
         telephonenumberColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("Telephone"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("Address"));
-        countyColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("County"));
+        countryColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("Country"));
         timestampColumn.setCellValueFactory(new PropertyValueFactory<Person, LocalDate>("Timestamp"));
         configureAllButtons();
         tableview.setItems(getPeople());
@@ -73,9 +73,12 @@ public class TableViewController extends Controller implements Initializable {
     @FXML
     public ObservableList<Person> getPeople() {
         //Add some elements to try, but make another method for adding stuff
-        personList = FXCollections.observableArrayList();
-        personList.add(new Person(1, "Philip", "Ferguson", "philipe.fergus@gmail.com", "070xxxxxxxxx", "Granngatan 56", "Lappland"));
+        addPerson(new Person(1, "Philip", "Ferguson", "philipe.fergus@gmail.com", "070xxxxxxxxx", "Granngatan 56", "Lappland"));
         return personList;
+    }
+    @FXML
+    public void addPerson(Person person){
+        personList.add(person);
     }
 
     public void configureAllButtons() {
@@ -88,7 +91,7 @@ public class TableViewController extends Controller implements Initializable {
                 mailTextField.clear();
                 telephonenumberTextField.clear();
                 addressTextField.clear();
-                countyTextField.clear();
+                countryTextField.clear();
             }
         });
         //AddPerson Button

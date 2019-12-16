@@ -15,7 +15,7 @@ public class Person {
     public SimpleStringProperty mail;
     public SimpleStringProperty telephone;
     public SimpleStringProperty address;
-    public SimpleStringProperty county;
+    public SimpleStringProperty country;
 
     public Person(Integer id, String firstname, String lastname, String mail, String telephonenumber, String address, String county) {
         this.id = new SimpleIntegerProperty(id);
@@ -24,7 +24,7 @@ public class Person {
         this.mail = new SimpleStringProperty(mail);
         this.telephone = new SimpleStringProperty(telephonenumber);
         this.address = new SimpleStringProperty(address);
-        this.county = new SimpleStringProperty(county);
+        this.country = new SimpleStringProperty(county);
         this.timestamp = LocalDate.now();
 
 
@@ -91,11 +91,11 @@ public class Person {
         this.address.set(address);
     }
 
-    public String getCounty() {
-        return county.get();
+    public String getCountry() {
+        return country.get();
     }
 
     public void setCounty(String county) {
-        this.county.set(county);
+        this.country.set(county);
     }
 }
