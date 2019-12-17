@@ -154,7 +154,7 @@ import se.lernia.addressbook.entity.*;
 				
 				try {
 					
-					ArrayList<Person> info = readPersonTable("select * from Person") ;
+					ArrayList<Person> info = readPersonTable("select * from Person ") ;
 					for (Person i: info) {
 						
 						System.out.println(i.getId()+ "\t"+i.getFirstName()+ "\t" + i.getLastName() +"\t" + i.getPhoneNumber()+  "\t"+ i.getEmail());
